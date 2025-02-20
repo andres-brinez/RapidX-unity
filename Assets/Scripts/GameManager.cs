@@ -43,4 +43,10 @@ public class GameManager : MonoBehaviour
                 
     }
 
+    public void updateScore(int points)
+    {
+        score += points;
+        Debug.Log("Score: " + score);
+    }
+
 }
