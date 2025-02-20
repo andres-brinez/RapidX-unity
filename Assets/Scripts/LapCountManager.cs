@@ -5,8 +5,7 @@ using UnityEngine;
 public class LapCountManager : MonoBehaviour
 {
 
-    // ** Detecta cuando el carro cruza la línea
-
+    // ** Detecta cuando el carro cruza la línea de meta y actualiza el contador de vueltas **
 
     public int lapCount = 0; // Contador de vueltas, que en si indica la vuelta en la que se encuentra el carro
 
@@ -22,10 +21,12 @@ public class LapCountManager : MonoBehaviour
 
     // Cuando el carro cruza la línea, se incrementa el contador de vueltas
     private void OnTriggerEnter(Collider other) {
+        
         lapCount++;
+        
+        GameManager.Instance.lapCount = lapCount ;
 
-        // Se disminuye el contador de vueltas porque cuando el carro cruza la línea por primera vez,  se incrementa el contador de vueltas. Este decremento corrige el conteo inicial.
-        Debug.Log("Lap Count: " + lapCount);
+        Debug.Log("Lap Count: " + GameManager.Instance.lapCount);
         
     
     }
