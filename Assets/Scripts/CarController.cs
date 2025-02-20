@@ -10,9 +10,16 @@ public class CarController : MonoBehaviour
     public float turnSpeed = 50.0f; // Velocidad de giro
     public float fixedYPosition = -3.61f; // Posición fija en el eje Y
 
+    public float powerUpSpeed = 5.0f;
+    public float powerUpTurnSpeed = 5.0f;
+    public int powerUpDuration = 10;
+
+
+
 
     public GameObject projectilePrefab;
     public Transform firePoint; // Punto de disparo que es un gameObject vacío dentro del carro 
+    public bool hasPowerUp;
 
     private bool canMoveForward = true; // Variable para controlar si el coche puede moverse hacia adelante
 
@@ -37,12 +44,12 @@ public class CarController : MonoBehaviour
 
         moveCar();
 
+
         // Mantener la posición fija en el eje Y
         // ** Esto se hace para corregir un problema de cuando se hace una colisión con un obstáculo, el carro se hunde en el suelo y cambiar la posición en el eje Y
         Vector3 position = transform.position;
         position.y = fixedYPosition;
         transform.position = position;
-
 
     }
 
@@ -68,6 +75,18 @@ public class CarController : MonoBehaviour
 
     }
 
+    private void moveCarPowerUp()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        forwardInput = Input.GetAxis("Vertical");
+
+        if (canMoveForward)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * (speed * powerUpSpeed) * forwardInput);
+        }
+        transform.Rotate(Vector3.up, (turnSpeed * powerUpTurnSpeed) * horizontalInput * Time.deltaTime);
+    }
+
     // Método que se llama cuando el carro colisiona con otro objeto
     private void OnCollisionEnter(Collision collision)
     {
@@ -91,6 +110,38 @@ public class CarController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        // Si el objeto con el que colisiona el carro es un obstáculo, se destruye el obstáculo
+        if (other.CompareTag("Powerup"))
+        {
+            Powerup();
+            StartCoroutine(PowerUpTimer());
+
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void Powerup()
+    {
+        hasPowerUp = true;
+        speed += powerUpSpeed;
+        turnSpeed += powerUpTurnSpeed;
+    }
+
+    IEnumerator PowerUpTimer()
+    {
+        yield return new WaitForSeconds(powerUpDuration);
+        // Se restaura la velocidad del carro
+        speed -= powerUpSpeed;
+        turnSpeed -= powerUpTurnSpeed;
+        hasPowerUp = false;
+    }
+
+
+
+
+    // aumenta la velocidad 
 
 
 }
