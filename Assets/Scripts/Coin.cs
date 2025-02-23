@@ -5,6 +5,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public int score = 10;
+    public AudioClip coinSound;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class Coin : MonoBehaviour
         if (other.gameObject.tag == "Car")
         {
             GameManager.Instance.updateScore(score);
+            AudioManager.Instance.PlaySFX(coinSound);
             Destroy(gameObject);
         }
     }
