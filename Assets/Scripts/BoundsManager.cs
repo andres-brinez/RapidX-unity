@@ -7,11 +7,6 @@ public class BoundsManager : MonoBehaviour
 {
     // ** Gestiona los límites del área de juego y realiza acciones cuando los objetos salen de los límites
 
-    public GameObject damageScreen;
-    float screenTime;
-    bool hasDamaged = false;
-    public float tiempoDeEspera = 5f;
-
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +15,13 @@ public class BoundsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasDamaged && screenTime < tiempoDeEspera)
+
+        float screenTimeDamaged = UIManager.Instance.screenTime;
+        float timeWait = UIManager.Instance.tiempoDeEspera;
+
+        // si el timepo que se lleva viendo la pantalla de daño es mayor al tiempo que se tiene de espera se reinicia la posicion
+        if (screenTimeDamaged >= timeWait)
         {
-            screenTime += Time.deltaTime; // Cuenta el tiempo
-        }
-        // si ya pasaron 2.5 segundos se desactiva la pantalla de daño y se reinicia la posicion 
-        else if (screenTime >= tiempoDeEspera)
-        {
-            desactivateDamageScreen();
             resetPosition();
 
         }
@@ -46,18 +40,18 @@ public class BoundsManager : MonoBehaviour
         {
             Debug.Log("Carro sale de la pantalla");
             // cuando se sale se activa una imagen color rojo para indicar que está en peligro
-            damageScreen.SetActive(true);
-            hasDamaged = true;
-
+            UIManager.Instance.activateDamageScreen();
         }
     }
 
+    // Cuando el carro se encuentra dentro de los limites, se desactiva la pantalla de daño
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Car" && hasDamaged)
+        if (other.gameObject.tag == "Car" && UIManager.Instance.hasDamaged)
         {
             Debug.Log("Carro volvió a los limites");
-            desactivateDamageScreen();
+            UIManager.Instance.desactivateDamageScreen();
+
 
         }
     }
@@ -73,11 +67,6 @@ public class BoundsManager : MonoBehaviour
 
     }
 
-    void desactivateDamageScreen()
-    {
-        damageScreen.SetActive(false);
-        hasDamaged = false;
-        screenTime = 0;
-    }
+    
 }
 
