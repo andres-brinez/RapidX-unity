@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
 {
 
     // TODO  Hacer lo del score
-    // TODO  Hacer lo del tiempo
+    // TODO  Hacer lo del tiempo de juego
+    // Todo hacer que se vea cuanto tiempo tengo para volver a los limites 
     public TextMeshProUGUI LapText;
 
     public static UIManager Instance { get; private set; }
