@@ -78,3 +78,6 @@ crashlytics-build.properties
 /WebGL Builds/unity.js
 /WebGL Builds/unity.data
 /WebGL Builds/unity.wasm
+
+connectwebgl.zip
+webgl_sharing
