@@ -7,9 +7,6 @@ public class BoundsManager : MonoBehaviour
 {
     // ** Gestiona los límites del área de juego y realiza acciones cuando los objetos salen de los límites
 
-
-    float timeWait = UIManager.Instance.tiempoDeEspera;
-
     // Start is called before the first frame update
     void Start()
     { }
@@ -17,6 +14,7 @@ public class BoundsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float timeWait = UIManager.Instance.tiempoDeEspera;
         float screenTimeDamaged = UIManager.Instance.screenTime;
         bool hasDamaged = UIManager.Instance.hasDamaged;
 
