@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject damageScreen;
     public bool hasDamaged = false;
     public float screenTime;
-    public float tiempoDeEspera = 5f;
+    public float tiempoDeEspera = 6f;
 
     public static UIManager Instance { get; private set; }
     private void Awake()
@@ -32,16 +32,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (hasDamaged && screenTime < tiempoDeEspera)
-        {
-            screenTime += Time.deltaTime; // Cuenta el tiempo
-        }
-        // si ya pasaron 2.5 segundos se desactiva la pantalla de daño y se reinicia la posicion 
-        else if (screenTime >= tiempoDeEspera)
-        {
-            desactivateDamageScreen();
-
-        }
+        
     }
 
 
@@ -61,6 +52,8 @@ public class UIManager : MonoBehaviour
     {
         damageScreen.SetActive(true);
         hasDamaged = true;
+        Debug.Log("Damaged activado");
+
     }
 
 

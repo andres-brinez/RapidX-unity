@@ -8,6 +8,8 @@ public class BoundsManager : MonoBehaviour
     // ** Gestiona los límites del área de juego y realiza acciones cuando los objetos salen de los límites
 
 
+    float timeWait = UIManager.Instance.tiempoDeEspera;
+
     // Start is called before the first frame update
     void Start()
     { }
@@ -15,13 +17,17 @@ public class BoundsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         float screenTimeDamaged = UIManager.Instance.screenTime;
-        float timeWait = UIManager.Instance.tiempoDeEspera;
+        bool hasDamaged = UIManager.Instance.hasDamaged;
 
-        // si el timepo que se lleva viendo la pantalla de daño es mayor al tiempo que se tiene de espera se reinicia la posicion
-        if (screenTimeDamaged >= timeWait)
+        if (hasDamaged && screenTimeDamaged < timeWait)
         {
+            UIManager.Instance.screenTime += Time.deltaTime; // Cuenta el tiempo
+        }
+        // si ya pasaron 2.5 segundos se desactiva la pantalla de daño y se reinicia la posicion 
+        else if (screenTimeDamaged >= timeWait)
+        {
+            UIManager.Instance.desactivateDamageScreen();
             resetPosition();
 
         }
@@ -67,6 +73,6 @@ public class BoundsManager : MonoBehaviour
 
     }
 
-    
+
 }
 
