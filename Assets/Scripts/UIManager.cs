@@ -35,7 +35,6 @@ public class UIManager : MonoBehaviour
         
     }
 
-
     public void UpdateLapText(int lap)
     {
         LapText.text = "Vuelta actual : " + lap;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,12 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         score = 0;
         lapCount = 0;
+    }
+
+    public void ChangeScene(string nameScene){
+
+        SceneManager.LoadScene(nameScene);
+
     }
 
     // Update is called once per frame
