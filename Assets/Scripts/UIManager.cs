@@ -16,7 +16,13 @@ public class UIManager : MonoBehaviour
     public GameObject damageScreen;
     public bool hasDamaged = false;
     public float screenTime;
-    public float tiempoDeEspera = 6f;
+    public float tiempoDeEspera = 1f;
+    private GameObject LapUI;
+
+
+
+    // game objets que tiene el text de lap
+    private GameObject informationUI;
 
     public static UIManager Instance { get; private set; }
     private void Awake()
@@ -31,7 +37,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-  
+    void Start()
+    {
+        informationUI = transform.Find("InformationUI").gameObject;
+        informationUI.SetActive(false);
+        damageScreen.SetActive(false);
+    }
     private void Update()
     {
         
@@ -52,6 +63,7 @@ public class UIManager : MonoBehaviour
         damageScreen.SetActive(false);
         hasDamaged = false;
         screenTime = 0;
+        DesactivateInformationUI();
     }
 
     public void activateDamageScreen()
@@ -59,9 +71,30 @@ public class UIManager : MonoBehaviour
         damageScreen.SetActive(true);
         hasDamaged = true;
         Debug.Log("Damaged activado");
+        ActivateLapInformation();
 
     }
 
+    public void ShowGameOverInfomation()
+    {
+
+        informationUI.SetActive(true);
+        TextMeshProUGUI text = informationUI.GetComponentInChildren<TextMeshProUGUI>(); 
+        text.text = "Perdiste";       
+    }
+
+    public void ActivateLapInformation()
+    {
+        informationUI.SetActive(true);
+        TextMeshProUGUI text = informationUI.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = "Estás fuera de los limites";
+    }
+
+    public void DesactivateInformationUI()
+    {
+
+        informationUI.SetActive(false);
+    }
 
 
 

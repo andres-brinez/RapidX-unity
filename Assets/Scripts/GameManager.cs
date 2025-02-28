@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     {
         lapCount++;
         IncreaseSpeed(10.0f);
-        IncreaseTurnSpeed(10.0f);
+        IncreaseTurnSpeed(5.0f);
     }
 
     // aumenta la velocidad del carro
@@ -75,5 +75,18 @@ public class GameManager : MonoBehaviour
     public void IncreaseTurnSpeed(float increment)
     {
         turnSpeed += increment;
+    }
+
+    // Game over
+    public void GameOver()
+    {
+        isGameOver = true;
+        UIManager.Instance.ShowGameOverInfomation();
+        PauseGame();
+    }
+
+     public void PauseGame()
+    {
+        Time.timeScale = 0;
     }
 }
