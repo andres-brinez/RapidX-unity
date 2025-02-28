@@ -37,8 +37,9 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void UpdateLapText(int lap)
+    public void UpdateLapText()
     {
+        var lap=GameManager.Instance.lapCount;
         LapText.text = "Vuelta actual : " + lap;
     }
 

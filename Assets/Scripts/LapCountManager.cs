@@ -23,15 +23,10 @@ public class LapCountManager : MonoBehaviour
 
     // Cuando el carro cruza la línea, se incrementa el contador de vueltas
     private void OnTriggerEnter(Collider other) {
-        
-        lapCount++;
-        
-        GameManager.Instance.lapCount = lapCount ;
-        UIManager.Instance.UpdateLapText(lapCount);
-
-        Debug.Log("Lap Count: " + GameManager.Instance.lapCount);
-        
-    
+                
+        GameManager.Instance.UpdateLapCount(); ;
+        UIManager.Instance.UpdateLapText();
+            
     }
 
 }

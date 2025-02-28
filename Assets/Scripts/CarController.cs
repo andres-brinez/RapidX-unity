@@ -6,16 +6,14 @@ public class CarController : MonoBehaviour
 {
 
     public float horizontalInput, forwardInput;
-    public float speed = 40.0f; // Velocidad del carro hacia adelante
     public float turnSpeed = 50.0f; // Velocidad de giro
+
+    private float speed; // Velocidad del carro hacia adelante
     public float fixedYPosition = -3.61f; // Posición fija en el eje Y
 
     public float powerUpSpeed = 5.0f;
     public float powerUpTurnSpeed = 5.0f;
     public int powerUpDuration = 10;
-
-
-
 
     public GameObject projectilePrefab;
     public Transform firePoint; // Punto de disparo que es un gameObject vacío dentro del carro 
@@ -28,7 +26,9 @@ public class CarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        speed = GameManager.Instance.speed;
+        hasPowerUp = false;
+        
     }
 
     // Update is called once per frame

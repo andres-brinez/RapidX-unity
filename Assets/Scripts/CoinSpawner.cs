@@ -7,7 +7,7 @@ public class CoinSpawner : MonoBehaviour
     public GameObject coinPrefab; // Prefab de la moneda
     public Transform[] waypoints; // Array de waypoints
 
-    public int coinsPerWaypoint = 5; // Número de monedas por waypoint
+    public int coinsPerWaypoint = 3; // Número de monedas por waypoint
 
     void Start() {
         SpawnCoins();

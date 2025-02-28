@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     public bool isGameOver;
     public int score;
     public int lapCount;
-    
+
+    public float speed = 40.0f; // Velocidad del carro hacia adelante
+
     // Este metodo se ejecuta antes de Start, singleton
     private void Awake()
     {
@@ -56,4 +58,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Score: " + score);
     }
 
+    public void UpdateLapCount()
+    {
+        lapCount++;
+    }
 }
