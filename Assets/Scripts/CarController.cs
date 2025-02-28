@@ -6,7 +6,7 @@ public class CarController : MonoBehaviour
 {
 
     public float horizontalInput, forwardInput;
-    public float turnSpeed = 50.0f; // Velocidad de giro
+    public float turnSpeed; // Velocidad de giro
 
     private float speed; // Velocidad del carro hacia adelante
     public float fixedYPosition = -3.61f; // Posición fija en el eje Y
@@ -27,6 +27,7 @@ public class CarController : MonoBehaviour
     void Start()
     {
         speed = GameManager.Instance.speed;
+        turnSpeed = GameManager.Instance.turnSpeed;
         hasPowerUp = false;
         
     }
@@ -34,6 +35,8 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speed = GameManager.Instance.speed;
+        turnSpeed = GameManager.Instance.turnSpeed;
 
         // Si el jugador presiona la barra espaciadora, se dispara un proyectil
         if (Input.GetKeyDown(KeyCode.Space))

@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     public int score;
     public int lapCount;
 
-    public float speed = 40.0f; // Velocidad del carro hacia adelante
+    public float speed = 55.0f; // Velocidad del carro hacia adelante
+    public float turnSpeed = 55.0f; // Velocidad de giro
+
 
     // Este metodo se ejecuta antes de Start, singleton
     private void Awake()
@@ -54,12 +56,24 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int points)
     {
         score += points;
-        Debug.Log("Se llama el gameMnager");
-        Debug.Log("Score: " + score);
     }
 
     public void UpdateLapCount()
     {
         lapCount++;
+        IncreaseSpeed(10.0f);
+        IncreaseTurnSpeed(10.0f);
+    }
+
+    // aumenta la velocidad del carro
+    public void IncreaseSpeed(float increment)
+    {
+        speed += increment;
+    }
+
+    // aumenta la velocidad de giro del carro
+    public void IncreaseTurnSpeed(float increment)
+    {
+        turnSpeed += increment;
     }
 }
