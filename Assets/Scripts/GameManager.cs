@@ -49,9 +49,10 @@ public class GameManager : MonoBehaviour
                     
     }
 
-    public void updateScore(int points)
+    public void UpdateScore(int points)
     {
         score += points;
+        Debug.Log("Se llama el gameMnager");
         Debug.Log("Score: " + score);
     }
 

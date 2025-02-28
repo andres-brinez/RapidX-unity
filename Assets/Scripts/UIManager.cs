@@ -11,7 +11,8 @@ public class UIManager : MonoBehaviour
     // TODO  Hacer lo del tiempo de juego
     // Todo hacer que se vea cuanto tiempo tengo para volver a los limites 
     public TextMeshProUGUI LapText;
-    
+    [SerializeField] private TextMeshProUGUI ScoreText;
+        
     public GameObject damageScreen;
     public bool hasDamaged = false;
     public float screenTime;
@@ -30,6 +31,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+  
     private void Update()
     {
         
@@ -40,6 +42,10 @@ public class UIManager : MonoBehaviour
         LapText.text = "Vuelta actual : " + lap;
     }
 
+    public void UpdateScoreText()
+    {
+        ScoreText.text = "Puntos: " + GameManager.Instance.score;
+    }
     public void desactivateDamageScreen()
     {
         damageScreen.SetActive(false);

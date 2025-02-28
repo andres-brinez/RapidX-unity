@@ -25,8 +25,9 @@ public class Coin : MonoBehaviour
 
         if (other.gameObject.tag == "Car")
         {
-            GameManager.Instance.updateScore(score);
+            GameManager.Instance.UpdateScore(score);
             AudioManager.Instance.PlaySFX(coinSound);
+            UIManager.Instance.UpdateScoreText();
             Destroy(gameObject);
         }
     }

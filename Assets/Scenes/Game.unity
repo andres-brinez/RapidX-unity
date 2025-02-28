@@ -308,13 +308,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170076733}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.4216701, y: -0.060682453, z: 0.028296703, w: -0.9042739}
   m_LocalPosition: {x: 0, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -352.322, z: 0}
 --- !u!1 &174307043
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 529273518}
   - component: {fileID: 529273517}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: BGTextScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -946,6 +946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LapText: {fileID: 581757906}
+  ScoreText: {fileID: 0}
   damageScreen: {fileID: 1674508270}
   hasDamaged: 0
   screenTime: 0
@@ -1366,7 +1367,7 @@ GameObject:
   - component: {fileID: 1120501496}
   - component: {fileID: 1120501495}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BGText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2511,7 +2512,7 @@ GameObject:
   - component: {fileID: 1912330992}
   - component: {fileID: 1912330991}
   m_Layer: 5
-  m_Name: Coins
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2556,7 +2557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Monedas : 0 '
+  m_text: 'Puntos : 0 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
