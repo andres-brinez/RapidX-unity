@@ -11,8 +11,8 @@ public class CarController : MonoBehaviour
     private float speed; // Velocidad del carro hacia adelante
     public float fixedYPosition = -3.61f; // Posición fija en el eje Y
 
-    public float powerUpSpeed = 5.0f;
-    public float powerUpTurnSpeed = 5.0f;
+    public float powerUpSpeed = 1f;
+    public float powerUpTurnSpeed = 1.2f;
     public int powerUpDuration = 10;
 
     public GameObject projectilePrefab;
@@ -29,7 +29,7 @@ public class CarController : MonoBehaviour
         speed = GameManager.Instance.speed;
         turnSpeed = GameManager.Instance.turnSpeed;
         hasPowerUp = false;
-        
+
     }
 
     // Update is called once per frame
@@ -45,8 +45,14 @@ public class CarController : MonoBehaviour
             Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         }
 
-        moveCar();
-
+        if (hasPowerUp)
+        {
+            moveCarPowerUp();
+        }
+        else
+        {
+            moveCar();
+        }
 
         // Mantener la posición fija en el eje Y
         // ** Esto se hace para corregir un problema de cuando se hace una colisión con un obstáculo, el carro se hunde en el suelo y cambiar la posición en el eje Y
@@ -85,9 +91,9 @@ public class CarController : MonoBehaviour
 
         if (canMoveForward)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * (speed * powerUpSpeed) * forwardInput);
+            transform.Translate(Vector3.forward * Time.deltaTime * (speed + powerUpSpeed) * forwardInput);
         }
-        transform.Rotate(Vector3.up, (turnSpeed * powerUpTurnSpeed) * horizontalInput * Time.deltaTime);
+        transform.Rotate(Vector3.up, (turnSpeed + powerUpTurnSpeed) * horizontalInput * Time.deltaTime);
     }
 
     // Método que se llama cuando el carro colisiona con otro objeto
@@ -139,6 +145,7 @@ public class CarController : MonoBehaviour
         speed -= powerUpSpeed;
         turnSpeed -= powerUpTurnSpeed;
         hasPowerUp = false;
+
     }
 
 
